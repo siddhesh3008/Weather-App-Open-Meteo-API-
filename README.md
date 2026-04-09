@@ -55,8 +55,8 @@ No installation needed. Just open the HTML file:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/weather-app-open-meteo.git
-   cd weather-app-open-meteo
+   git clone https://github.com/siddhesh3008/Weather-App-Open-Meteo-API-.git
+   cd Weather-App-Open-Meteo-API-
    ```
 
 2. **Open in browser**
@@ -128,5 +128,5 @@ This project is open source and available under the [MIT License](https://openso
 ---
 
 <p align="center">
-  Built with ❤️ using <a href="https://open-meteo.com/">Open-Meteo</a>
+  Built with ☀️ using <a href="https://open-meteo.com/">Open-Meteo</a>
 </p>
