@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="description" content="SkyPulse — a beautiful mobile weather app powered by Open-Meteo." />
+  <title>SkyPulse — Live Weather</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌤️</text></svg>" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="phone-shell">
+
+    <!-- ─── Status Bar (cosmetic) ─── -->
+    <div class="status-bar">
+      <span class="status-time" id="status-time"></span>
+      <div class="status-icons">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l22 22"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+      </div>
+    </div>
+
+    <!-- ─── Search Area ─── -->
+    <form id="search-form" class="search-area" autocomplete="off">
+      <div class="search-field">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="city-input" type="text" placeholder="Search city…" aria-label="City name" required />
+      </div>
+      <button id="search-btn" type="submit" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </form>
+
+    <!-- ─── Recent Chips ─── -->
+    <div id="recent-searches" class="recent-bar hidden">
+      <div id="recent-list" class="recent-list"></div>
+    </div>
+
+    <!-- ─── Main Content ─── -->
+    <div class="main-content">
+
+      <!-- Loading -->
+      <div id="loader" class="loader hidden">
+        <div class="spinner"></div>
+        <p>Finding weather…</p>
+      </div>
+
+      <!-- Error -->
+      <div id="error-box" class="error-card hidden" role="alert">
+        <span class="error-icon">!</span>
+        <p id="error-msg"></p>
+      </div>
+
+      <!-- Welcome (shown before first search) -->
+      <div id="welcome" class="welcome-state">
+        <div class="welcome-icon">🌤️</div>
+        <p class="welcome-text">Search a city to see<br/>the current weather</p>
+      </div>
+
+      <!-- Weather Display -->
+      <section id="weather-card" class="weather-display hidden" aria-live="polite">
+        <p id="city-name" class="wd-city"></p>
+        <p id="city-country" class="wd-region"></p>
+
+        <div class="wd-hero">
+          <div id="weather-icon" class="wd-emoji"></div>
+          <p id="temperature" class="wd-temp"></p>
+          <p id="weather-desc" class="wd-desc"></p>
+        </div>
+
+        <div class="wd-details">
+          <div class="wd-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+            <span class="detail-val" id="wind-speed"></span>
+            <span class="detail-lbl">Wind</span>
+          </div>
+          <div class="wd-divider"></div>
+          <div class="wd-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+            <span class="detail-val" id="humidity"></span>
+            <span class="detail-lbl">Humidity</span>
+          </div>
+          <div class="wd-divider"></div>
+          <div class="wd-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+            <span class="detail-val" id="wind-direction"></span>
+            <span class="detail-lbl">Direction</span>
+          </div>
+        </div>
+
+        <time id="fetched-time" class="wd-time"></time>
+      </section>
+    </div>
+
+    <!-- ─── Bottom Bar ─── -->
+    <footer class="bottom-bar">
+      <p>Powered by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open‑Meteo</a></p>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
