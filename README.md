@@ -27,7 +27,7 @@ A beautiful, responsive weather web app with a **mobile-first design** that fetc
 ## 🖼️ Preview
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/placeholder" alt="SkyPulse Weather App Preview" width="380" />
+  <img src="preview.png" alt="SkyPulse Weather App Preview" width="380" />
 </p>
 
 > ⚠️ *Replace the placeholder above with an actual screenshot after deployment.*
