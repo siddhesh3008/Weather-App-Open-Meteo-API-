@@ -30,8 +30,6 @@ A beautiful, responsive weather web app with a **mobile-first design** that fetc
   <img src="preview.png" alt="SkyPulse Weather App Preview" width="380" />
 </p>
 
-> ⚠️ *Replace the placeholder above with an actual screenshot after deployment.*
-
 ---
 
 ## 📁 Project Structure
@@ -96,28 +94,6 @@ This app uses two **free, open-source APIs** from [Open-Meteo](https://open-mete
 - **JavaScript (ES6+)** — `async/await`, `fetch()`, `localStorage`, DOM API
 - **Google Fonts** — [Inter](https://fonts.google.com/specimen/Inter) typeface
 - **Open-Meteo API** — Free weather data (no key required)
-
----
-
-## 📦 Deployment
-
-This is a **static site** — no server, no build step. Deploy anywhere:
-
-| Platform | How | Free? |
-|----------|-----|-------|
-| **[GitHub Pages](https://pages.github.com/)** | Push to repo → Settings → Pages → Deploy from `main` | ✅ |
-| **[Netlify](https://netlify.com/)** | Drag & drop folder or connect GitHub repo | ✅ |
-| **[Vercel](https://vercel.com/)** | Import GitHub repo → auto-deploy | ✅ |
-
-> **No additional configuration needed.** Just upload the 3 files and it works.
-
-### Deploy to GitHub Pages (Recommended)
-
-1. Push your code to a GitHub repository
-2. Go to **Settings → Pages**
-3. Under **Source**, select `Deploy from a branch`
-4. Choose `main` branch and `/ (root)` folder
-5. Click **Save** — your app will be live at `https://username.github.io/repo-name/`
 
 ---
 
